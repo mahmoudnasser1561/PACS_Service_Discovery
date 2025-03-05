@@ -124,7 +124,7 @@ def update_server_status():
                     servers[server_key]['status'] = 'offline'
                     logger.warning(f"Orthanc server went offline: {server_key}")
 
-                if time.time() - servers[server_key]['last_seen'] > 900: 
+                if time.time() - servers[server_key]['last_seen'] > 300: 
                     logger.info(f"Removing unreachable Orthanc server: {server_key}")
                     del servers[server_key]
 
