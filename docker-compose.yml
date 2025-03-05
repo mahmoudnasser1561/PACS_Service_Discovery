@@ -1,6 +1,22 @@
 version: '3.8'
 
 services:
+  discovery:
+    build:
+      context: ./discovery
+    container_name: orthanc-discovery
+    ports:
+      - "5000:5000"  
+    networks:
+      - orthanc-net
+    environment:
+      - SCAN_INTERVAL=10  
+    restart: unless-stopped
+    depends_on:
+      - orthanc1
+      - orthanc2
+      - orthanc3
+      
   orthanc1:
     image: jodogne/orthanc
     container_name: orthanc1
