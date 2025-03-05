@@ -107,9 +107,75 @@
                         '<div class="col-12 text-center text-danger">Error connecting to discovery service</div>';
                 });
         }
+
+        function updateServerList() {
+            fetch(`${API_URL}`)
+                .then(response => response.json())
+                .then(data => {
+                    const serverList = document.getElementById('serverList');
+                    serverList.innerHTML = '';
+                    
+                    if (Object.keys(data).length === 0) {
+                        serverList.innerHTML = '<div class="col-12 text-center text-muted">No servers detected</div>';
+                        return;
+                    }
+                    
+                    for (const [key, server] of Object.entries(data)) {
+                        const card = document.createElement('div');
+                        card.className = 'col-md-4 mb-3';
+                        
+                        let statusClass, statusIcon;
+                        switch (server.status) {
+                            case 'online':
+                                statusClass = 'status-online';
+                                statusIcon = '●';
+                                break;
+                            case 'offline':
+                                statusClass = 'status-offline';
+                                statusIcon = '○';
+                                break;
+                            default:
+                                statusClass = 'status-unknown';
+                                statusIcon = '◌';
+                        }
+                        
+                        const lastSeen = new Date(server.last_seen * 1000).toLocaleTimeString();
+                        
+                        card.innerHTML = `
+                            <div class="card server-card h-100">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">${server.name || key}</h5>
+                                    <span class="${statusClass}">${statusIcon} ${server.status}</span>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Host:</strong> ${server.host}</p>
+                                    <p><strong>DICOM Port:</strong> ${server.dicom_port}</p>
+                                    <p><strong>Web Port:</strong> ${server.web_port}</p>
+                                    <p><strong>AET:</strong> ${server.aet || 'Unknown'}</p>
+                                    <p><strong>Last Seen:</strong> ${lastSeen}</p>
+                                    ${server.version ? `<p><strong>Version:</strong> ${server.version}</p>` : ''}
+                                </div>
+                                <div class="card-footer d-flex justify-content-between">
+                                    <a href="http://${server.host}:${server.web_port}/app/explorer.html" target="_blank" class="btn btn-sm btn-primary">Open UI</a>
+                                </div>
+                            </div>
+                        `;
+                        
+                        serverList.appendChild(card);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching servers:', error);
+                    document.getElementById('serverList').innerHTML = 
+                        '<div class="col-12 text-center text-danger">Error connecting to discovery service</div>';
+                });
+        }
         
         ServerStats();
         setInterval(ServerStats, 2000);
+
+        updateServerList();
+        setInterval(updateServerList, 2000);
         </script>
     </body>
 </html>

@@ -5,8 +5,8 @@
         "web_port": 8042,
         "name": "Orthanc 8042",
         "aet": "ORTHANC1",
-        "first_seen": 1741200235.900847,
-        "last_seen": 1741200296.0038538,
+        "first_seen": 1741200967.860474,
+        "last_seen": 1741201073.0599322,
         "status": "online",
         "version": "mainline"
     },
@@ -16,8 +16,8 @@
         "web_port": 8043,
         "name": "Orthanc 8043",
         "aet": "ORTHANC2",
-        "first_seen": 1741200235.9041429,
-        "last_seen": 1741200296.0061293,
+        "first_seen": 1741200967.8630571,
+        "last_seen": 1741201073.061925,
         "status": "online",
         "version": "mainline"
     },
@@ -27,8 +27,19 @@
         "web_port": 8044,
         "name": "Orthanc 8044",
         "aet": "ORTHANC3",
-        "first_seen": 1741200235.9071488,
-        "last_seen": 1741200296.0080588,
+        "first_seen": 1741200967.8655348,
+        "last_seen": 1741201073.0638316,
+        "status": "online",
+        "version": "mainline"
+    },
+    "127.0.0.1:4246": {
+        "host": "127.0.0.1",
+        "dicom_port": 4246,
+        "web_port": 8046,
+        "name": "Orthanc 8046",
+        "aet": "ORTHANC5",
+        "first_seen": 1741201027.9743023,
+        "last_seen": 1741201073.0660005,
         "status": "online",
         "version": "mainline"
     }
