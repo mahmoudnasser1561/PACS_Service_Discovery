@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  orthanc1:
+    image: jodogne/orthanc
+    container_name: orthanc1
+    ports:
+      - "8042:8042"  
+      - "4242:4242"  
+    networks:
+      - orthanc-net
+    volumes:
+      - orthanc1-data:/var/lib/orthanc/db
+    environment:
+      ORTHANC_JSON: |
+        {
+          "Name": "Orthanc1",
+          "DicomAet": "ORTHANC1",
+          "DicomPort": 4242,
+          "AuthenticationEnabled": false,
+          "RemoteAccessAllowed": true
+        }
+
+  orthanc2:
+    image: jodogne/orthanc
+    container_name: orthanc2
+    ports:
+      - "8043:8042"  
+      - "4243:4242"  
+    networks:
+      - orthanc-net
+    volumes:
+      - orthanc2-data:/var/lib/orthanc/db
+    environment:
+      ORTHANC_JSON: |
+        {
+          "Name": "Orthanc2",
+          "DicomAet": "ORTHANC2",
+          "DicomPort": 4242,
+          "AuthenticationEnabled": false,
+          "RemoteAccessAllowed": true
+        }
+
+  orthanc3:
+    image: jodogne/orthanc
+    container_name: orthanc3
+    ports:
+      - "8044:8042"  
+      - "4244:4242"  
+    networks:
+      - orthanc-net
+    volumes:
+      - orthanc3-data:/var/lib/orthanc/db
+    environment:
+      ORTHANC_JSON: |
+        {
+          "Name": "Orthanc3",
+          "DicomAet": "ORTHANC3",
+          "DicomPort": 4242,
+          "AuthenticationEnabled": false,
+          "RemoteAccessAllowed": true
+        }
+
+networks:
+  orthanc-net:
+    driver: bridge
+
+volumes:
+  orthanc1-data:
+  orthanc2-data:
+  orthanc3-data:
