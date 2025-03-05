@@ -1,0 +1,35 @@
+{
+    "127.0.0.1:4242": {
+        "host": "127.0.0.1",
+        "dicom_port": 4242,
+        "web_port": 8042,
+        "name": "Orthanc 8042",
+        "aet": "ORTHANC1",
+        "first_seen": 1741200235.900847,
+        "last_seen": 1741200296.0038538,
+        "status": "online",
+        "version": "mainline"
+    },
+    "127.0.0.1:4243": {
+        "host": "127.0.0.1",
+        "dicom_port": 4243,
+        "web_port": 8043,
+        "name": "Orthanc 8043",
+        "aet": "ORTHANC2",
+        "first_seen": 1741200235.9041429,
+        "last_seen": 1741200296.0061293,
+        "status": "online",
+        "version": "mainline"
+    },
+    "127.0.0.1:4244": {
+        "host": "127.0.0.1",
+        "dicom_port": 4244,
+        "web_port": 8044,
+        "name": "Orthanc 8044",
+        "aet": "ORTHANC3",
+        "first_seen": 1741200235.9071488,
+        "last_seen": 1741200296.0080588,
+        "status": "online",
+        "version": "mainline"
+    }
+}

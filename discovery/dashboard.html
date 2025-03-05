@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orthanc Discovery Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+        .server-card {
+            transition: all 0.3s;
+        }
+        .server-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .status-online {
+            color: green;
+        }
+        .status-offline {
+            color: red;
+        }
+        .status-unknown {
+            color: orange;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .refresh-btn {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h1>Orthanc Discovery Dashboard</h1>
+                <p class="text-muted">Dynamic service discovery for Orthanc DICOM servers</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <h5 class="text-muted">Total Servers</h5>
+                        <div id="totalServers" class="display-4">-</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <h5 class="text-muted">Online Servers</h5>
+                        <div id="onlineServers" class="display-4 text-success">-</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <h5 class="text-muted">Offline Servers</h5>
+                        <div id="offlineServers" class="display-4 text-danger">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Detected Servers</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="serverList" class="row"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API endpoint
+        const API_URL = "http://127.0.0.1:5000/servers.json";        
+        function ServerStats() {
+            fetch(`${API_URL}`)
+                .then(response => response.json())
+                .then(data => {
+                    const serverCount = Object.keys(data).length;
+                    
+                    const onlineServers = Object.values(data).filter(server => server.status === "online").length;
+                    const offlineServers = serverCount - onlineServers;
+
+                    document.getElementById("totalServers").textContent = serverCount;
+                    document.getElementById("onlineServers").textContent = onlineServers;
+                    document.getElementById("offlineServers").textContent = offlineServers;
+                })
+                .catch(error => {
+                    console.error('Error fetching servers:', error);
+                    document.getElementById('serverList').innerHTML = 
+                        '<div class="col-12 text-center text-danger">Error connecting to discovery service</div>';
+                });
+        }
+        
+        ServerStats();
+        setInterval(ServerStats, 2000);
+        </script>
+    </body>
+</html>
+ 
