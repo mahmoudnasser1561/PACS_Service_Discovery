@@ -31,7 +31,7 @@
 * the clients checks host ports and check if those ports are occupied by orthanc.
 * then genarate a json file with info stats about these orthanc servers.
 * then sends the json file to ```@app.route('/servers.json')``` route.
-* javascript client fethces the data and using that data we create a buitiful dahsboard using bootstrap.
+* javascript client fethces the data and using that data we create a beatiful dahsboard using bootstrap.
 * notice that scraping and checking ports is done via a thread running in the background that rescans every 3 second to update the dashboard.
 * if server goes down it gets noticed and the dashboard gets updated as the JS client fetches the json data every 2 seconds.
 
@@ -47,7 +47,7 @@
 * try to stop one server ```docker stop orthanc2```
 * the dashbooard gets updated
 
-##### you can easilt Interact with those servers though their exposed REST API
+##### you can easily Interact with those servers though their exposed REST API
 
 ### Next Steps :
 * make the dashboard gets more insights about those servers through their REST API
