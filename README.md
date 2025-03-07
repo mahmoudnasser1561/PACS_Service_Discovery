@@ -52,5 +52,5 @@
 ### Next Steps :
 * make the dashboard gets more insights about those servers through their REST API
 * we can get data about DICOM data they have and more info [REST API Interaction](https://github.com/mahmoudnasser1561/DICOM?tab=readme-ov-file#uses-rest-api-queries-to-inspect-stored-dicom-instances-and-query-your-servers)
-* we can get more servver metrics as we done [monitoring.log](https://github.com/mahmoudnasser1561/DICOM/blob/main/monitoring.log)
-* those metrics could be used to build more features upon
+* we can get more server metrics as we done [monitoring.log](https://github.com/mahmoudnasser1561/DICOM/blob/main/monitoring.log)
+* those metrics could be used to build more features upon.
