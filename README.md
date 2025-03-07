@@ -42,7 +42,7 @@
 * check the dashboard
 * try to have one extra server using add_orthanc.sh file
 * the dashboard gets updated
-* try to have a django serveron a some port the dashboard doesn't update
+* try to have a django server on some port the dashboard doesn't update
 * the discovery file only notices Orthanc servers
 * try to stop one server ```docker stop orthanc2```
 * the dashbooard gets updated
