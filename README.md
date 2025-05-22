@@ -36,7 +36,7 @@
 * if server goes down it gets noticed and the dashboard gets updated as the JS client fetches the json data every 2 seconds.
 
 ### how to run :
-* run ```docker compose ip -d``` to have 3 Orthanc servers up
+* run ```docker compose up -d``` to have 3 Orthanc servers up
 * create a virtualenv then activate it and then install requirements.txt ```pip install -r ./discovery/requirements.txt``` if you are at the root dir
 * then run the flask app
 * check the dashboard
